@@ -19,7 +19,7 @@ I use other armhf/debian:jessie (https://hub.docker.com/r/armhf/debian/) as star
 
 Here is some output as I captured.
 ```
-pi@idgiotbrk:~/git/influxdata-docker/influxdb/1.2 $ docker run -it --rm 1f700d8c65fc 
+pi@raspberrypi:~/git/influxdata-docker/influxdb/1.2 $ docker run -it --rm 1f700d8c65fc 
 
  8888888           .d888 888                   8888888b.  888888b.
    888            d88P"  888                   888  "Y88b 888  "88b
