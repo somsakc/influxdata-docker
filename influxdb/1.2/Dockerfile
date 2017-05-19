@@ -1,5 +1,7 @@
-FROM buildpack-deps:jessie-curl
+FROM armhf/debian:jessie
 
+RUN apt-get update
+RUN apt-get -y install wget
 RUN set -ex && \
     for key in \
         05CE15085FC09D18E99EFB22684A14CF2582E0C5 ; \
@@ -10,11 +12,11 @@ RUN set -ex && \
     done
 
 ENV INFLUXDB_VERSION 1.2.4
-RUN wget -q https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_amd64.deb.asc && \
-    wget -q https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_amd64.deb && \
-    gpg --batch --verify influxdb_${INFLUXDB_VERSION}_amd64.deb.asc influxdb_${INFLUXDB_VERSION}_amd64.deb && \
-    dpkg -i influxdb_${INFLUXDB_VERSION}_amd64.deb && \
-    rm -f influxdb_${INFLUXDB_VERSION}_amd64.deb*
+RUN wget -q https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_armhf.deb.asc && \
+    wget -q https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_armhf.deb && \
+    gpg --batch --verify influxdb_${INFLUXDB_VERSION}_armhf.deb.asc influxdb_${INFLUXDB_VERSION}_armhf.deb && \
+    dpkg -i influxdb_${INFLUXDB_VERSION}_armhf.deb && \
+    rm -f influxdb_${INFLUXDB_VERSION}_armhf.deb*
 COPY influxdb.conf /etc/influxdb/influxdb.conf
 
 EXPOSE 8086
